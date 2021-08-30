@@ -39,10 +39,15 @@ android {
     }
 
     buildTypes {
+
         release {
-            minifyEnabled false
+            minifyEnabled true //indicates that the code should be shrunk
+            shrinkResources true // remove all unused resources
+            proguardFile getDefaultProguardFile('proguard-android-optimize.txt')
+            proguardFile 'proguard-project.txt' // file shall hold ProGuard configuration
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+
         debug {
             applicationIdSuffix = ".debug"
         }

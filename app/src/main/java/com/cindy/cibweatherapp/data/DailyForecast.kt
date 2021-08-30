@@ -12,6 +12,7 @@ data class DailyForecast(
 )
 
 @Parcelize
+@Keep
 data class ForecastItem(
     @SerializedName("weather") val weather: WeatherObject,
     @SerializedName("valid_date") val day: String,
@@ -24,6 +25,7 @@ data class ForecastItem(
 ): Parcelable
 
 @Parcelize
+@Keep
 data class WeatherObject(
     @SerializedName("icon") val icon: String,
     @SerializedName("description") val description: String
