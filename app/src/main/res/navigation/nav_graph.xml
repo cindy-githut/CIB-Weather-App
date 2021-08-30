@@ -12,8 +12,10 @@
         tools:layout="@layout/main_fragment">
 
         <action
-            android:id="@+id/action_FirstFragment_to_LaunchPagesFragment"
+            android:id="@+id/action_FirstFragment_to_HourlyWeatherFragment"
             app:destination="@id/HourlyWeatherFragment" />
+
+
     </fragment>
 
     <fragment
@@ -21,6 +23,11 @@
         android:name="com.cindy.cibweatherapp.ui.HourlyWeatherFragment"
         android:label="@string/hourly_fragment_label"
         tools:layout="@layout/hourly_weather_fragment" >
+
+        <argument
+            android:name="forecastItem"
+            app:argType="com.cindy.cibweatherapp.data.ForecastItem" />
+
     </fragment>
 
 </navigation>

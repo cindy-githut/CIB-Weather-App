@@ -12,7 +12,9 @@ import com.cindy.cibweatherapp.utils.getDayOfWeek
 import com.squareup.picasso.Picasso
 import kotlin.math.roundToInt
 
-class ForecastItemsListAdapter(private val items: List<ForecastItem>) :
+class ForecastItemsListAdapter(private val items: List<ForecastItem>,
+                               private val onItemClickListener: OnItemClickedListener
+) :
     RecyclerView.Adapter<ForecastItemsListAdapter.ForecastItemViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -36,7 +38,7 @@ class ForecastItemsListAdapter(private val items: List<ForecastItem>) :
         }
     }
 
-    class ForecastItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class ForecastItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var day: AppCompatTextView = view.findViewById(R.id.day)
         var forecastIcon: AppCompatImageView = view.findViewById(R.id.forecastIcon)
         var forecastDescription: AppCompatTextView = view.findViewById(R.id.forecastDescription)
@@ -76,11 +78,20 @@ class ForecastItemsListAdapter(private val items: List<ForecastItem>) :
                 )
             }
 
+            itemView.let {
+                it.setOnClickListener {
+                    onItemClickListener.onItemClicked(forecastItem)
+                }
+            }
         }
 
         private fun displayInCelsiusDegrees(temperature: Int): String {
             return "$temperature \u2103"
         }
-
     }
+
+    interface OnItemClickedListener {
+        fun onItemClicked(forecastItem: ForecastItem)
+    }
+
 }

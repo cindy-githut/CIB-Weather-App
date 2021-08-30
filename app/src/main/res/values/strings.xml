@@ -4,4 +4,10 @@
     <string name="hourly_fragment_label">Hourly Fragment</string>
 
     <string name="temperature">%s / %s</string>
+    <string name="high_temp">Highest temperature = %s</string>
+    <string name="clouds">Clouds = %d </string>
+    <string name="wind_speed">Wind Speed = %s m/s</string>
+    <string name="minTemperature">Min Temperature = %s</string>
+    <string name="maxTemperature">Max Temperature = %s</string>
+
 </resources>

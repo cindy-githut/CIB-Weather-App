@@ -4,6 +4,8 @@ import android.content.Context
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import com.cindy.cibweatherapp.ui.MainViewModel
 import com.cindy.cibweatherapp.data.MainViewModelFactory
 import com.cindy.cibweatherapp.WeatherApp
@@ -16,6 +18,9 @@ abstract class BaseFragment : Fragment() {
 
     @Inject
     lateinit var mainViewModelFactory: MainViewModelFactory
+
+    protected val navController: NavController
+        get() = findNavController()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

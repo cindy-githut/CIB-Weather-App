@@ -9,11 +9,12 @@ import androidx.lifecycle.lifecycleScope
 import com.cindy.cibweatherapp.BuildConfig
 import com.cindy.cibweatherapp.WeatherApp
 import com.cindy.cibweatherapp.base.BaseFragment
+import com.cindy.cibweatherapp.data.ForecastItem
 import com.cindy.cibweatherapp.databinding.MainFragmentBinding
 import com.cindy.cibweatherapp.utils.ActivityLifeCycleObserver
 import kotlinx.coroutines.launch
 
-class MainFragment : BaseFragment() {
+class MainFragment : BaseFragment(), ForecastItemsListAdapter.OnItemClickedListener {
 
 
     private var fragmentBinding: MainFragmentBinding? = null
@@ -35,7 +36,7 @@ class MainFragment : BaseFragment() {
         fragmentBinding = MainFragmentBinding.inflate(inflater, container, false)
 
         initViews()
-        getDailyForecast(-33.8423238, 18.547371, 7, BuildConfig.APP_KEY)
+        getDailyForecast()
 
         onErrorEvents()
 
@@ -45,12 +46,13 @@ class MainFragment : BaseFragment() {
     private fun initViews() {
 
 
+
     }
 
-    private fun getDailyForecast(lat: Double, lon: Double, days: Int, appId: String) {
+    private fun getDailyForecast() {
         lifecycleScope.launch {
 
-            val dailyForecastList = viewModel.getDailyForecast(lat, lon, days, appId)
+            val dailyForecastList = viewModel.getDailyForecast(-33.8423238, 18.547371, 7, BuildConfig.APP_KEY)
 
             if (dailyForecastList != null) {
 
@@ -59,11 +61,17 @@ class MainFragment : BaseFragment() {
                 }
 
                 if(dailyForecastList.list.isNotEmpty()){
-                    binding.weatherForecastRecyclerView.adapter = ForecastItemsListAdapter(dailyForecastList.list)
+                    binding.weatherForecastRecyclerView.adapter = ForecastItemsListAdapter(dailyForecastList.list, this@MainFragment)
                 }
 
             }
         }
     }
 
+    override fun onItemClicked(forecastItem: ForecastItem) {
+        navController.navigate(
+            MainFragmentDirections.actionFirstFragmentToHourlyWeatherFragment(
+                forecastItem)
+        )
+    }
 }
