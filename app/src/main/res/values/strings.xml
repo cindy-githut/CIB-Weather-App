@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">CIBWeatherApp</string>
+    <string name="main_fragment_label">Main Fragment</string>
+    <string name="hourly_fragment_label">Hourly Fragment</string>
+
+    <string name="temperature">%s / %s</string>
 </resources>

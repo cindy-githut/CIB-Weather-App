@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/MainFragment">
+
+    <fragment
+        android:id="@+id/MainFragment"
+        android:name="com.cindy.cibweatherapp.ui.MainFragment"
+        android:label="@string/main_fragment_label"
+        tools:layout="@layout/main_fragment">
+
+        <action
+            android:id="@+id/action_FirstFragment_to_LaunchPagesFragment"
+            app:destination="@id/HourlyWeatherFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/HourlyWeatherFragment"
+        android:name="com.cindy.cibweatherapp.ui.HourlyWeatherFragment"
+        android:label="@string/hourly_fragment_label"
+        tools:layout="@layout/hourly_weather_fragment" >
+    </fragment>
+
+</navigation>
